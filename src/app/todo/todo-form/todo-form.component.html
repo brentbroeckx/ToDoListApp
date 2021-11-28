@@ -1,0 +1,31 @@
+<div class="alert alert-danger" role="alert" *ngIf="isSubmitted && errorMessage">
+    {{errorMessage}}
+</div>
+
+<div class="alert alert-warning" role="warning">
+    <p>Form status: {{ todoForm.status }}</p>
+    <p *ngIf="isEdit"> {{ todoTitleChange }} </p>
+</div>
+<form (ngSubmit)="onSubmit()" [formGroup]="todoForm">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title" formControlName="title" minlength="3">
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <select name="category" id="category" formControlName="category" class="d-block">
+            <option value="" selected disabled>Select color</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+            <option value="White">White</option>
+            <option value="Black">Black</option>
+            <option value="Purple">Purple</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Cyan">Cyan</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" *ngIf="isAdd" [disabled]="!todoForm.valid || isSubmitted">Add</button>
+    <button type="submit" class="btn btn-primary" *ngIf="isEdit" [disabled]="!todoForm.valid || isSubmitted">Save</button>
+    <button (click)="back()" class="btn btn-danger ml-3">Cancel</button>
+</form>

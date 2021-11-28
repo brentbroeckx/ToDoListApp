@@ -1,0 +1,74 @@
+.title {
+    color: black;
+    background-color: #84f0f08f;
+    border-color: #2196f3;
+    height: 35px;
+    padding-right: 10px;
+}
+
+.titleHeader {
+    max-width: 96%;
+}
+
+.left-bar {
+    transform: translateX(15px);
+    border-left: 6px solid #2196f3;
+}
+
+.center {
+    display: flex;
+    margin-top: 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.blue-gradiant {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(324deg, rgba(2, 0, 36, 1) 0%, rgba(156, 156, 232, 1) 0%, rgba(0, 212, 255, 1) 100%);
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-top: 12px;
+    height: 52px;
+    max-width: 50px !important;
+}
+
+.btn-width {
+    max-width: 25px;
+}
+
+.cardWidth {
+    min-width: 15px !important;
+    max-width: 225px;
+}
+
+.card-font-size {
+    font-size: 20px;
+}
+
+.todoBox {
+    overflow-y: auto;
+    max-height: 600px;
+    margin-top: 15px;
+    align-items: center;
+}
+
+.newItemBox {
+    border: 1px dashed black;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    margin: auto;
+    margin-bottom: 1rem;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(324deg, rgba(2, 0, 36, 1) 0%, rgba(156, 156, 232, 1) 0%, rgba(0, 212, 255, 1) 100%);
+    p {
+        margin-bottom: 0;
+    }
+}

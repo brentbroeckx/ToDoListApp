@@ -1,0 +1,104 @@
+<h3 class="text-white">Todo Items</h3>
+
+<div class="horizontalScroll">
+    <div class="row" cdkDropListGroup>
+        <div class="col-xs-4">
+            <div class="dragdropcontainer">
+                <div class="header">To do</div>
+
+                <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" class="todo-list" (cdkDropListDropped)="drop($event, 'todo')">
+                    <div class="todo-box" [cdkDragData]="item" *ngFor="let item of todo" cdkDrag>
+                        <div class="item" (click)="openXl(content, item)">
+                            <p>Task: {{ item.name}}</p>
+                            <p class="descriptionText">Description: {{ item.description }}</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="newItemBox" (click)="addItem('todoItem')">
+                    <i class="fas fa-plus mr-2"></i>
+                    <p class="font-weight-bold">Create new item</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-4">
+            <div class="dragdropcontainer">
+                <div class="header">Active</div>
+
+                <div cdkDropList #activeList="cdkDropList" [cdkDropListData]="active" class="todo-list" (cdkDropListDropped)="drop($event, 'active')">
+                    <div class="todo-box" [cdkDragData]="item" *ngFor="let item of active" cdkDrag>
+                        <div class="item" (click)="openXl(content, item)">
+                            <p>Task: {{ item.name}}</p>
+                            <p class="descriptionText">Description: {{ item.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="newItemBox" (click)="addItem('activeItem')">
+                    <i class="fas fa-plus mr-2"></i>
+                    <p class="font-weight-bold">Create new item</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-4">
+            <div class="dragdropcontainer">
+                <div class="header">Done</div>
+
+                <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" class="todo-list" (cdkDropListDropped)="drop($event, 'done')">
+                    <div class="todo-box" [cdkDragData]="item" *ngFor="let item of done" cdkDrag>
+                        <div class="item" (click)="openXl(content, item)">
+                            <p>Task: {{ item.name}}</p>
+                            <p class="descriptionText">Description: {{ item.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="newItemBox" (click)="addItem('doneItem')">
+                    <i class="fas fa-plus mr-2"></i>
+                    <p class="font-weight-bold">Create new item</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+
+    <div class="modal-body bg-dark text-white">
+        <form (ngSubmit)="onSubmit()" [formGroup]="itemForm">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ clickedItem.name}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name" formControlName="name" minlength="3">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Description" formControlName="description">
+            </div>
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="date" class="form-control" id="date" name="date" placeholder="date" formControlName="date">
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select name="status" id="status" class="form-control" formControlName="status">
+                <option value="todo">Todo</option>
+                <option value="active">Active</option>
+                <option value="done">Done</option>
+              </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" (click)="modal.close('Close click')">CLOSE</button>
+                <button type="button" class="btn btn-danger" (click)="delete(itemId)">DELETE</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!itemForm.valid || isSubmitted">SAVE</button>
+            </div>
+        </form>
+    </div>
+
+</ng-template>
